@@ -39,7 +39,7 @@ export default function LoginForm() {
 
   const onSubmit = async(data) => {
     try {
-      let res = await axios.post(`http://${basePath}/users/login`,data , {
+      let res = await axios.post(`${basePath}/users/login`,data , {
         headers: {
           "Content-Type": "application/json"
         }

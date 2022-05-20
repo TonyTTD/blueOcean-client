@@ -53,7 +53,7 @@ export default function SignupForm(props) {
 
     axios({
       method: 'post',
-      url: `http://${process.env.REACT_APP_URL}/blueocean/api/v1/users`,
+      url: `${process.env.REACT_APP_URL}/blueocean/api/v1/users`,
       data: data,
       headers: {
         "Content-Type": "application/json"
