@@ -38,7 +38,6 @@ export default function ActiveUsersList() {
   }, [userData.userToken]);
 
   const friendAdd = (friendId) => {
-    console.log(friendId);
     axios
       .put(
         `http://${process.env.REACT_APP_URL}/blueocean/api/v1/users/togglefriend`,
@@ -60,10 +59,14 @@ export default function ActiveUsersList() {
   };
 
   useEffect(() => {
-    const data = userData.friends.map((friend) => {
-      return friend.userName;
-    });
-    setFriendsList(data);
+    if (userData.friends) {
+      const data = userData.friends.map((friend) => {
+        return friend.userName;
+      });
+      setFriendsList(data);
+      
+    }
+
   }, [userData.userToken, userData.friends]);
 
   return (
