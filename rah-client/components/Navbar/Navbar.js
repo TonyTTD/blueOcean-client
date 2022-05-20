@@ -28,7 +28,7 @@ import SignupForm from '../SignupForm';
 import { userState } from '../../_states/tokenState';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import LogoIcon from '../../public/anubis-bg.jpg';
-import Image from 'next/Image';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import uuid from 'react-uuid';
 import axios from 'axios';

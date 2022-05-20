@@ -1,7 +1,7 @@
 import Container from '@mui/material/Container';
 import styled from 'styled-components';
 import Popover from '@mui/material/Popover';
-import Image from 'next/Image';
+import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 import { useEffect, useState, useContext } from 'react';
 import BoardImg from '../../public/gameboard.jpg';

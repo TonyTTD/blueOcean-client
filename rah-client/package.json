@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8080",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,12 +16,13 @@
     "@mui/x-data-grid": "^5.10.0",
     "axios": "^0.27.2",
     "intercept-stdout": "^0.1.2",
-    "next": "12.1.6",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "react-hook-form": "^7.30.0",
     "react-uuid": "^1.0.2",
     "recoil": "^0.7.2",
+    "serve": "^13.0.2",
     "socket.io-client": "^4.5.0",
     "styled-components": "^5.3.5",
     "uuid": "^8.3.2"
