@@ -81,7 +81,7 @@ export default function SignupForm(props) {
           );
         }
       })
-      .catch((err) => console.log('ERR IN SIGN UP'));
+      .catch((err) => console.log(err));
   };
 
   return (

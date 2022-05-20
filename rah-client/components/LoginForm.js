@@ -37,31 +37,69 @@ export default function LoginForm() {
   const [submitted, setSubmitted] = useState(false);
   const [token, setToken] = useRecoilState(userState);
 
-  const onSubmit = (data) => {
-    axios({ method: 'POST', url: `http://${basePath}/users/login`, data: data })
-      .then((res) => {
-        if (res.status === 200) {
-          setToken({
+  const onSubmit = async(data) => {
+    try {
+      let res = await axios.post(`http://${basePath}/users/login`,data , {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (res.status === 200) {
+        setToken({
+          userId: res.data.user._id,
+          userToken: res.data.token,
+          userName: res.data.user.userName,
+          img: res.data.user.img,
+          friends: res.data.user.friends,
+        });
+        localStorage.setItem(
+          'userToken',
+          JSON.stringify({
             userId: res.data.user._id,
             userToken: res.data.token,
             userName: res.data.user.userName,
             img: res.data.user.img,
             friends: res.data.user.friends,
-          });
-          localStorage.setItem(
-            'userToken',
-            JSON.stringify({
-              userId: res.data.user._id,
-              userToken: res.data.token,
-              userName: res.data.user.userName,
-              img: res.data.user.img,
-              friends: res.data.user.friends,
-            })
-          );
-          router.push('/lobby');
-        }
-      })
-      .catch((err) => console.error(err));
+          })
+        );
+        router.push('/lobby');
+    }
+  }
+    
+    catch (err) {
+      console.error(err)
+    }
+
+
+    // axios({ 
+    //   method: 'POST', 
+    //   url: `http://${basePath}/users/login`, 
+    //   data: data ,
+    // })
+    //   .then((res) => {
+        // if (res.status === 200) {
+        //   setToken({
+        //     userId: res.data.user._id,
+        //     userToken: res.data.token,
+        //     userName: res.data.user.userName,
+        //     img: res.data.user.img,
+        //     friends: res.data.user.friends,
+        //   });
+        //   localStorage.setItem(
+        //     'userToken',
+        //     JSON.stringify({
+        //       userId: res.data.user._id,
+        //       userToken: res.data.token,
+        //       userName: res.data.user.userName,
+        //       img: res.data.user.img,
+        //       friends: res.data.user.friends,
+        //     })
+        //   );
+        //   router.push('/lobby');
+    //     }
+    //   })
+    //   .catch((err) => console.error(err));
   };
 
   return (
