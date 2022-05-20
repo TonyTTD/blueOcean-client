@@ -36,7 +36,7 @@ export default function FriendsModalForm({ friendId, closeAfterDeleteFriend }) {
   const unfriend = () => {
     axios
       .put(
-        `http://${process.env.REACT_APP_URL}/blueocean/api/v1/users/togglefriend`,
+        `${process.env.REACT_APP_URL}/blueocean/api/v1/users/togglefriend`,
         { user_id: friendId },
         {
           headers: {

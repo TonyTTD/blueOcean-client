@@ -40,7 +40,7 @@ export default function ActiveUsersList() {
   const friendAdd = (friendId) => {
     axios
       .put(
-        `http://${process.env.REACT_APP_URL}/blueocean/api/v1/users/togglefriend`,
+        `${process.env.REACT_APP_URL}/blueocean/api/v1/users/togglefriend`,
         { user_id: friendId },
         {
           headers: {
