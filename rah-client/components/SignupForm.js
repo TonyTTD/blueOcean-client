@@ -55,6 +55,9 @@ export default function SignupForm(props) {
       method: 'post',
       url: `http://${process.env.REACT_APP_URL}/blueocean/api/v1/users`,
       data: data,
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
       .then((res) => {
         if (res.status === 200) {
