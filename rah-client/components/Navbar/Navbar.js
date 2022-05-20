@@ -40,7 +40,7 @@ const Navbar = () => {
   const onlinePlayers = useRecoilValue(friendsState);
   const socket = useContext(SocketContext);
   const router = useRouter();
-
+  const [friendId, setFriendId] = useState('');
   useEffect(() => {
     const localUser = JSON.parse(localStorage.getItem('userToken'));
     if (userData.userToken || localUser) {
@@ -160,7 +160,7 @@ const Navbar = () => {
   // }, []);
 
   const filteredByOnline = (friends, online) => {
-    if (typeof friends === 'undefined') return []
+    if (typeof friends === 'undefined') return [];
     let obj = {};
     //console.log('hereee', friends, online)
     for (let i = 0; i < friends.length; i++) {
@@ -219,7 +219,7 @@ const Navbar = () => {
                   {/* if user.loggedIn is true, show green, else show invisible */}
                   {friend.loggedIn ? (
                     <Badge overlap='circular' variant='dot' color='success'>
-                      <IconButton size='small' onClick={avatarClick}>
+                      <IconButton size='small' onClick={(e) => avatarClick(e, friend._id)}>
                         <Avatar />
                       </IconButton>
                     </Badge>
@@ -257,9 +257,14 @@ const Navbar = () => {
   };
 
   //make it so modal appears to either send message or delete friend
-  const avatarClick = (e) => {
+  const avatarClick = (e, id) => {
     e.stopPropagation();
+    setFriendId(id);
     handleOpen();
+  };
+
+  const closeAfterDeleteFriend = () => {
+    handleClose();
   };
   return (
     <>
@@ -406,7 +411,7 @@ const Navbar = () => {
           onClose={handleClose}
           aria-labelledby='modal-modal-title'
           aria-describedby='modal-modal-description'>
-          <FriendsModalForm />
+          <FriendsModalForm friendId={friendId} closeAfterDeleteFriend={closeAfterDeleteFriend} />
         </Modal>
       </>
       {/* signup modal */}

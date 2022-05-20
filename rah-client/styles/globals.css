@@ -46,7 +46,7 @@ a {
 }
 
 #activeUsers-container {
-  background-color: #F1F7ED;
+  background-color: #f1f7ed;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   flex-shrink: 1;
   border: 1px solid gray;
@@ -67,8 +67,8 @@ a {
 
 #activeUsers-header {
   border-radius: 5px 5px 0 0;
-  background-color: #9A8249;
-  color: #F1F7ED;
+  background-color: #9a8249;
+  color: #f1f7ed;
   height: 35px;
   min-width: 170px;
   max-width: 215px;
@@ -83,7 +83,7 @@ a {
 
 #activeUsersList-container {
   border-radius: 25px;
-  border: 1px solid #9A8249;
+  border: 1px solid #9a8249;
   display: flex;
   height: 40px;
   justify-content: space-between;
@@ -98,7 +98,8 @@ a {
   margin: 15px;
 }
 
-.activeUsers-username, .activeUsers-rank {
+.activeUsers-username,
+.activeUsers-rank {
   display: inline-flex;
   align-items: center;
 }
@@ -126,7 +127,7 @@ a {
 #video-container {
   width: 65%;
   border-radius: 5px;
-  background-color: #F1F7ED;
+  background-color: #f1f7ed;
   text-align: center;
   margin-bottom: 25px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -137,7 +138,7 @@ a {
   height: 35px;
   border-radius: 5px 5px 0 0;
   width: 100%;
-  background-color: #9A8249;
+  background-color: #9a8249;
   margin-bottom: 5px;
 }
 
@@ -152,7 +153,7 @@ a {
 #instructions-container {
   width: 65%;
   font-size: sans-serif;
-  background-color: #F1F7ED;
+  background-color: #f1f7ed;
   border-radius: 5px;
   border: 1px solid gray;
   padding: 0;
@@ -160,14 +161,15 @@ a {
   max-width: 750px;
 }
 
-#instructions-header, #video-header {
-  background-color: #9A8249;
+#instructions-header,
+#video-header {
+  background-color: #9a8249;
   width: 100%;
   height: 35px;
   text-align: center;
-  font-family:'Josefin Slab';
+  font-family: 'Josefin Slab';
   font-weight: 700;
-  color: #F1F7ED;
+  color: #f1f7ed;
   font-size: 1.3em;
   line-height: 1.5;
   letter-spacing: 0.00938em;
@@ -194,7 +196,7 @@ a {
   height: 35vh;
   width: 61vw;
   margin-top: 3em;
-  background-color: #F1F7ED;
+  background-color: #f1f7ed;
   padding: 0;
   border-radius: 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -249,7 +251,7 @@ a {
 
 #createGame-button {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  color: #9A8249;
+  color: #9a8249;
   width: 30%;
   margin: auto;
   border: 1px solid #9a824991;
@@ -257,9 +259,8 @@ a {
 
 #createGame-button:hover {
   border: 1px solid #9a824991;
-  color: #9A8249;
+  color: #9a8249;
   background-color: rgba(128, 128, 128, 0.112);
-
 }
 
 /* play/index.js */
@@ -292,8 +293,8 @@ a {
   height: fit-content;
 }
 .gameInfoDrawer {
-  position: "relative";
-  transition: "none !important";
+  position: 'relative';
+  transition: 'none !important';
 }
 .playerCard {
   display: flex;
@@ -305,10 +306,9 @@ a {
 }
 
 #player-card {
-  background-color: #F1F7ED;
+  background-color: #f1f7ed;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
-
 
 .playerCardContainer {
   list-style: none;
@@ -328,7 +328,6 @@ a {
   padding-left: 13px;
   /* background-color: #1a1828; */
   padding: 15px;
-
 }
 
 #login-container {
@@ -357,26 +356,27 @@ a {
 .MuiDataGrid-main {
   border: 1px solid gray;
   border-radius: 5px 5px 0 0;
-  background-color: #F1F7ED;
+  background-color: #f1f7ed;
 }
 
 .MuiDataGrid-footerContainer {
   border: 1px solid gray;
-  background-color: #F1F7ED;
+  background-color: #f1f7ed;
   border-radius: 0 0 5px 5px;
   border-top: none;
 }
 
 .MuiDataGrid-columnHeaders {
   display: flex;
-  background-color: #9A8249;
-  color: #F1F7ED;
+  background-color: #9a8249;
+  color: #f1f7ed;
   font-family: monospace;
   font-weight: 700;
 }
 
-.MuiTab-root[aria-selected="true"], .MuiButtonBase-root[aria-selected="true"] {
-  color: #F1F7ED;
+.MuiTab-root[aria-selected='true'],
+.MuiButtonBase-root[aria-selected='true'] {
+  color: #f1f7ed;
   background-color: #9a824918;
 }
 
@@ -401,7 +401,7 @@ a {
   left: -17px;
 }
 
-.avatar-container[selected = "true"] {
+.avatar-container[selected='true'] {
   border: 1px solid gold;
 }
 
@@ -409,6 +409,7 @@ a {
   color: white;
 }
 
-.MuiTouchRipple-root, .css-8je8zh-MuiTouchRipple-root {
-  color: #9A8249 !important;
+.MuiTouchRipple-root,
+.css-8je8zh-MuiTouchRipple-root {
+  color: #9a8249 !important;
 }

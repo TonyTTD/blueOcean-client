@@ -52,12 +52,7 @@ export default function Game() {
   };
 
   useEffect(() => {
-    socket.on(`receive-${gameId}`, (user) => {
-      console.log(user);
-    });
-
     socket.on(`game-send`, (game) => {
-      console.log(game, game.phase)
       setGame(game);
       setVoted(false);
       setGameInfo(getGameInfo(game, playerId));
@@ -70,8 +65,7 @@ export default function Game() {
         setMessages([...messages, messageObj]);
       }
     });
-    // return () => socket.disconnect()
-  }, []);
+  });
 
   useEffect(() => {
     socket.emit('join-room', { user_id: playerId, userName: user.userName }, gameId);
@@ -86,8 +80,6 @@ export default function Game() {
 
   useEffect(() => {
     if (gameId) {
-
-
       axios({
         method: 'get',
         url: `http://${basePath}/games/single?`,
@@ -97,9 +89,9 @@ export default function Game() {
           let data = res.data;
           setGame(data.game);
           setGameInfo(getGameInfo(data.game, playerId));
-        }).catch((err) => err);
+        })
+        .catch((err) => err);
     }
-
   }, [gameId]);
 
   const closeDrawer = () => {
@@ -108,7 +100,6 @@ export default function Game() {
 
   const startGame = () => {
     var player1 = { user_id: playerId, userName: user.userName };
-    console.log('buitton', playerId, gameId);
     socket.emit('start-game', player1, gameId);
   };
   const switchPhase = () => {

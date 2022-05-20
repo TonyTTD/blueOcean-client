@@ -12,7 +12,6 @@ import SendIcon from '@mui/icons-material/Send';
 export default function ChatForm() {
   //VARIABLES TO MAKE SOCKET WORK
   const socket = useContext(SocketContext);
-  //console.log(socket);
   const [chatBoxInput, setChatBoxInput] = useState('');
 
   const [user, setUser] = useRecoilState(userState);

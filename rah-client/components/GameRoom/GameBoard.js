@@ -1,6 +1,6 @@
 import Container from '@mui/material/Container';
 import styled from 'styled-components';
-import Popover from '@mui/material/Popover'
+import Popover from '@mui/material/Popover';
 import Image from 'next/Image';
 import Typography from '@mui/material/Typography';
 import { useEffect, useState, useContext } from 'react';
@@ -14,26 +14,25 @@ import Sprite2 from '../../public/sprite2.png';
 import Sprite3 from '../../public/sprite3.png';
 import Sprite4 from '../../public/sprite4.png';
 import { MapEmAcross, MapEmCircle, oneInMiddle } from './HelperFuncs.js';
-
+import uuid from 'react-uuid';
 const sprites = [Sprite1.src, Sprite2.src, Sprite3.src, Sprite4.src];
 const sprite = { height: '60px', width: '30px' };
 export default function GameBoard(props) {
   const [height, setHeight] = useState();
   const [width, setWidth] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [popName, setPopName] = useState()
+  const [popName, setPopName] = useState();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log(event.currentTarget.id)
-    setPopName()
+    setPopName();
   };
   const getSpriteIndex = (userName) => {
     if (userName.slice(0, 3) === 'bot') {
-      return parseInt(userName.slice(3)) % 4
+      return parseInt(userName.slice(3)) % 4;
     } else {
-      return userName.length % 4
+      return userName.length % 4;
     }
-  }
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -47,14 +46,14 @@ export default function GameBoard(props) {
   const [trialVote, setTrialVote] = useState();
   const vote = (candidate) => {
     let user1 = { user_id: user.userId, userName: user.userName };
-    setTrialVote(false)
-    let cand = {player: game.playerVoted}
+    setTrialVote(false);
+    let cand = { player: game.playerVoted };
     socket.emit('player-vote', user1, cand, gameId);
   };
 
   useEffect(() => {
-    setTrialVote(true)
-  }, [game.currentRound])
+    setTrialVote(true);
+  }, [game.currentRound]);
 
   useEffect(() => {
     setHeight(document.getElementById('bgimg').clientHeight);
@@ -75,7 +74,7 @@ export default function GameBoard(props) {
     return Object.values(Arr).map((locale, i) => {
       // /console.log(Arr)
       return (
-        <Tooltip title={locale.userName}>
+        <Tooltip key={uuid()} title={locale.userName}>
           <Person id={locale.userName} onClick={handleClick} left={locale.left} top={locale.top}>
             <Image src={sprites[getSpriteIndex(locale.userName)]} alt='' height='75' width='60' />
           </Person>
@@ -108,25 +107,34 @@ export default function GameBoard(props) {
         <Img src={BoardImg} alt='' id='bgimg' height='450' width='850' />
         {props.game ? renderItems(game) : null}
         <Popover
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-      >
-        {anchorEl ? <h3>{anchorEl.id} Vote History:</h3> : null}
-        {anchorEl ? Object.keys(game.players1[anchorEl.id].voteHistory).map((key, ind, array) => {
-          //return <h5>{key}</h5>
-          if (game.players1[anchorEl.id].voteHistory[key] !== null) {
-            console.log(array[key])
-            return <h5>Round {key}: voted to eliminate {game.players1[anchorEl.id].voteHistory[key].onTrial}</h5>
-          }
-        }) : null}
-      </Popover>
-        {(props.game.phase === 'day3' && trialVote && props.info.status)? <Phase3 onClick={vote}>VOTE TO SACRIFICE {game.playerVoted.userName}</Phase3> : <></>}
-
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}>
+          {anchorEl ? <h3>{anchorEl.id} Vote History:</h3> : null}
+          {anchorEl
+            ? Object.keys(game.players1[anchorEl.id].voteHistory).map((key, ind, array) => {
+                //return <h5>{key}</h5>
+                if (game.players1[anchorEl.id].voteHistory[key] !== null) {
+                  console.log(array[key]);
+                  return (
+                    <h5>
+                      Round {key}: voted to eliminate{' '}
+                      {game.players1[anchorEl.id].voteHistory[key].onTrial}
+                    </h5>
+                  );
+                }
+              })
+            : null}
+        </Popover>
+        {props.game.phase === 'day3' && trialVote && props.info.status ? (
+          <Phase3 onClick={vote}>VOTE TO SACRIFICE {game.playerVoted.userName}</Phase3>
+        ) : (
+          <></>
+        )}
       </ImgContainer>
     </OuterContainer>
   );
@@ -185,7 +193,7 @@ const VoteHistory = styled.span`
   position: absolute;
   left: 500px;
   top: 50px;
-  `;
+`;
 
 const Phase3 = styled.button`
   border: none;

@@ -36,7 +36,6 @@ export default function Lobby() {
   const socket = useContext(SocketContext);
 
   const [games, setGames] = useState([]);
-  console.log(games);
   useEffect(() => {
     const localUser = JSON.parse(localStorage.getItem('userToken'));
     //gate-keep
@@ -48,13 +47,11 @@ export default function Lobby() {
   }, []);
 
   useEffect(() => {
-    console.log('get games')
     socket.emit('get-games', games);
   }, [socket]);
 
   useEffect(() => {
     socket.on('receive-games', (games) => {
-      console.log('receive games')
       setGames(games);
     });
     socket.on('update-games-list', (game) => {

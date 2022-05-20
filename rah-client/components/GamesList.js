@@ -27,10 +27,18 @@ const columns = [
     headerAlign: 'center',
   },
   {
+    field: 'status',
+    headerName: 'STATUS',
+    type: 'string',
+    width: 100,
+    editable: false,
+    headerAlign: 'center',
+  },
+  {
     field: 'playersNum',
     headerName: 'MAX PLAYERS',
     type: 'number',
-    width: 170,
+    width: 120,
     editable: false,
     headerAlign: 'center',
   },
@@ -58,12 +66,12 @@ export default function GamesList(props) {
       gameName: game.gameName,
       playersNum: players,
       createdAt: new Date(game.createdAt).toString(),
+      status: game.started,
     };
   });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-
   };
 
   const onRowClick = (event) => {

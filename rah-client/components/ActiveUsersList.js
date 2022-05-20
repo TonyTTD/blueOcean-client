@@ -13,7 +13,8 @@ export default function ActiveUsersList() {
   const userData = useRecoilValue(userState);
   const [usersList, setUsersList] = useState([]);
   const [globalUsersList, setGlobalUsersList] = useRecoilState(friendsState);
-
+  const [updatedUser, setUpdatedUser] = useRecoilState(userState);
+  const [friendsList, setFriendsList] = useState([]);
   const avatars = [
     '/_next/static/media/icon3.9872b9c5.png',
     '/_next/static/media/icon2.37800c5f.png',
@@ -24,7 +25,6 @@ export default function ActiveUsersList() {
 
   useEffect(() => {
     socket.on('receive-lobby', (users) => {
-      console.log(users);
       setUsersList(users);
       setGlobalUsersList(users);
     });
@@ -37,14 +37,34 @@ export default function ActiveUsersList() {
     socket.emit('join-room', userData, 'lobby');
   }, [userData.userToken]);
 
-  const friendAdd = () => {
-    axios.put(`http://${process.env.REACT_APP_URL}/blueocean/api/v1/users/togglefriends`, {
-      headers: {
-        Authorization: `Bearer ${userData.userToken}`,
-      },
-      user_id: userData.userId,
-    });
+  const friendAdd = (friendId) => {
+    console.log(friendId);
+    axios
+      .put(
+        `http://${process.env.REACT_APP_URL}/blueocean/api/v1/users/togglefriend`,
+        { user_id: friendId },
+        {
+          headers: {
+            Authorization: `Bearer ${userData.userToken}`,
+          },
+        }
+      )
+      .then((res) => {
+        const localUser = JSON.parse(localStorage.getItem('userToken'));
+        localUser.friends = res.data.friends;
+        localStorage.setItem('userToken', JSON.stringify(localUser));
+        const copyUser = { ...userData };
+        copyUser.friends = res.data.friends;
+        setUpdatedUser(copyUser);
+      });
   };
+
+  useEffect(() => {
+    const data = userData.friends.map((friend) => {
+      return friend.userName;
+    });
+    setFriendsList(data);
+  }, [userData.userToken, userData.friends]);
 
   return (
     <div id='activeUsers-outerContainer'>
@@ -66,6 +86,14 @@ export default function ActiveUsersList() {
                   {/* <img className='userAvatar' src={!user.img || user.img === "" ? avatars[Math.floor(Math.random() * 5) + 1] : user.img } height={"33"} width={"33"} /> */}
 
                   <span className='userName'>{user.userName}</span>
+                  {user.userName.split('_')[0] !== 'Guest' &&
+                  userData.userToken &&
+                  userData.userName !== user.userName &&
+                  !friendsList.includes(user.userName.split('_')[0]) ? (
+                    <Button onClick={() => friendAdd(user.userId)}>+</Button>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </div>
@@ -75,6 +103,13 @@ export default function ActiveUsersList() {
     </div>
   );
 }
+
+const Button = styled.h1`
+  &:hover {
+    color: red;
+    cursor: pointer;
+  }
+`;
 
 const Title = styled(Typography)`
   font-family: 'Josefin Slab';
