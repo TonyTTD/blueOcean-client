@@ -26,8 +26,6 @@ import { userState } from '../../../_states/tokenState';
 import GameBoard from '../../../components/GameRoom/GameBoard';
 
 import { useRecoilValue } from 'recoil';
-const basePath = 'blueocean/api/v1';
-
 export default function Game() {
   const basePath = `${process.env.REACT_APP_URL}/blueocean/api/v1`;
   const [players, setPlayers] = useState([]);
@@ -82,7 +80,7 @@ export default function Game() {
     if (gameId) {
       axios({
         method: 'get',
-        url: `http://${basePath}/games/single?`,
+        url: `${basePath}/games/single?`,
         params: { id: gameId },
       })
         .then((res) => {
