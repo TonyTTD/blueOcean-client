@@ -12,3 +12,6 @@ Lobby shows games in session. Users are directed here to either join a game or c
 ![](/rah-client/assets/Createit.gif)
 
 Users can create a game after choosing how many players are playing and what the game name will be.
+
+## Signup
+![](/rah-client/assets/signup.gif)
