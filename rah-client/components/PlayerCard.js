@@ -4,7 +4,7 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
-import Image from 'next/Image';
+import Image from 'next/image';
 import deadIcon from '../public/killed.png';
 import styled from 'styled-components';
 import { shadows } from '@mui/system';

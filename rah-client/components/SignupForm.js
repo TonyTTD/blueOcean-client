@@ -13,7 +13,7 @@ import Icon1 from '../public/icons2/icon1.png';
 import Icon2 from '../public/icons2/icon2.png';
 import Icon3 from '../public/icons2/icon3.png';
 import Icon4 from '../public/icons2/icon4.png';
-import Image from 'next/Image';
+import Image from 'next/image';
 
 const style = {
   position: 'absolute',
