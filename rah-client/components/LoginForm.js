@@ -38,7 +38,7 @@ export default function LoginForm() {
   const [token, setToken] = useRecoilState(userState);
 
   const onSubmit = (data) => {
-    axios({ method: 'POST', url: `http://${basePath}/users/login`, data: data })
+    axios({ method: 'POST', url: `${basePath}/users/login`, data: data })
       .then((res) => {
         if (res.status === 200) {
           setToken({

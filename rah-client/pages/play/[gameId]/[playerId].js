@@ -26,7 +26,7 @@ import { userState } from '../../../_states/tokenState';
 import GameBoard from '../../../components/GameRoom/GameBoard';
 
 import { useRecoilValue } from 'recoil';
-const basePath = 'http://localhost:4030/blueocean/api/v1';
+const basePath = 'localhost:4030/blueocean/api/v1';
 
 export default function Game() {
   const basePath = `${process.env.REACT_APP_URL}/blueocean/api/v1`;
